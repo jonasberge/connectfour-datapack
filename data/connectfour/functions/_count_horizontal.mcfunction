@@ -1,0 +1,1 @@
+function connectfour:_count_horizontal_allcols
