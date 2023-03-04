@@ -1,0 +1,4 @@
+scoreboard objectives remove connectfour_gamestate
+scoreboard objectives remove connectfour_cache
+scoreboard objectives remove connectfour_nextrow
+function connectfour:_remove_tags
