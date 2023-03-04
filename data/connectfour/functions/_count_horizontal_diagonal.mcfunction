@@ -3,7 +3,10 @@
 
 # Horizontal
 function connectfour:_copy_gamestate_to_cache
+scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
 function connectfour:_count_horizontal_row
+execute if entity @e[tag=connectfour_register2,scores={connectfour_cache=1}] run function connectfour:_set_markers_horizontal
+scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
 
 # Diagonal: Bottom-left to top-right (transform diagonals to horizontals)
 function connectfour:_copy_gamestate_to_cache
@@ -22,7 +25,10 @@ scoreboard players operation @e[tag=connectfour_check4,sort=nearest,limit=1] con
 # Now, since we adjusted the columns
 # such that bottom-left-to-top-right diagonals are horizontals,
 # we can reuse the horizontal function to check for diagonals.
+scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
 function connectfour:_count_horizontal_row
+execute if entity @e[tag=connectfour_register2,scores={connectfour_cache=1}] run function connectfour:_set_markers_diagonal_bltr
+scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
 
 # Diagonal: Top-left to bottom-right (transform diagonals to horizontals)
 function connectfour:_copy_gamestate_to_cache
@@ -41,7 +47,10 @@ scoreboard players operation @e[tag=connectfour_check4,sort=nearest,limit=1] con
 # Now, since we adjusted the columns
 # such that bottom-left-to-top-right diagonals are horizontals,
 # we can reuse the horizontal function to check for diagonals.
+scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
 function connectfour:_count_horizontal_row
+execute if entity @e[tag=connectfour_register2,scores={connectfour_cache=1}] run function connectfour:_set_markers_diagonal_tlbr
+scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
 
 # Debug
 #execute if entity @e[tag=connectfour_register1,tag=_debug] run tellraw @a [{"score":{"name":"@e[tag=connectfour_check1,limit=1]","objective":"connectfour_cache"}}]
