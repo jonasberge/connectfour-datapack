@@ -2,7 +2,11 @@
 # Setup must have been called before.
 
 # Just in case
+function connectfour:_remove_tags
 function connectfour:_reset_placers
+
+# Reset the board
+function connectfour:reset_board
 
 # Scores
 scoreboard players set @e[tag=connectfour_column,tag=connectfour_player1_column,sort=nearest,limit=7] connectfour_gamestate 0

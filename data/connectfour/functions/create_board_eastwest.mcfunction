@@ -18,20 +18,40 @@ fill ~ ~-5 ~4 ~ ~-15 ~-4 air
 # Box for the armor stands
 fill ~ ~-13 ~3 ~ ~-15 ~-3 glass
 
+# Set command blocks with commands to place tiles.
+fill ~ ~-6 ~4 ~ ~-6 ~-4 iron_block
+setblock ~ ~-6 ~-3 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column1,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-6 ~-2 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column2,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-6 ~-1 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column3,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-6 ~0 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column4,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-6 ~1 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column5,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-6 ~2 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column6,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-6 ~3 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player1_column,tag=connectfour_column7,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+fill ~ ~-8 ~4 ~ ~-8 ~-4 gold_block
+setblock ~ ~-8 ~-3 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column1,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-8 ~-2 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column2,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-8 ~-1 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column3,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-8 ~0 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column4,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-8 ~1 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column5,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-8 ~2 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column6,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+setblock ~ ~-8 ~3 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute as @e[tag=connectfour_player2_column,tag=connectfour_column7,sort=nearest,limit=1] at @s run function connectfour:place_tile"} replace
+# Mainloop
+setblock ~ ~-10 ~ repeating_command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run function connectfour:mainloop"} replace
+setblock ~ ~-10 ~-1 command_block[facing=down]{Command:"execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run function connectfour:start"} replace
+
+
 # Origin for spawning the other armor stands
 # 4 down (board height)
 # 10 down (fixed buffer)
 # 2 down (column armor stands are 1 above the center instead of below)
 # 0.5 up (summon in the center of the block)
-# = -4-10-2+0.5 = -13.5
+# = -4-10-2+0.5 = -15.5
 summon armor_stand ~ ~-15.5 ~ {Tags:["connectfour_board_origin","connectfour_board_origin_live"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_register","connectfour_register1"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_register","connectfour_register2"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_register","connectfour_register3"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 
-execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_player","connectfour_player1"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
-execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_player","connectfour_player2"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_state"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_event"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 
@@ -44,7 +64,7 @@ execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~-3 {"Tags":["connectfour_column","connectfour_column1","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~-2 {"Tags":["connectfour_column","connectfour_column2","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~-1 {"Tags":["connectfour_column","connectfour_column3","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
-execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~0 {"Tags":["connectfour_column","connectfour_column4","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
+execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~0 {"Tags":["connectfour_column","connectfour_column4","connectfour_player1_column","connectfour_player1_middle_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~1 {"Tags":["connectfour_column","connectfour_column5","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~2 {"Tags":["connectfour_column","connectfour_column6","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1 ~3 {"Tags":["connectfour_column","connectfour_column7","connectfour_player1_column","connectfour_column_origin"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
@@ -52,7 +72,7 @@ execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~-3 {"Tags":["connectfour_column","connectfour_column1","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~-2 {"Tags":["connectfour_column","connectfour_column2","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~-1 {"Tags":["connectfour_column","connectfour_column3","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
-execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~0 {"Tags":["connectfour_column","connectfour_column4","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
+execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~0 {"Tags":["connectfour_column","connectfour_column4","connectfour_player2_column","connectfour_player2_middle_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~1 {"Tags":["connectfour_column","connectfour_column5","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~2 {"Tags":["connectfour_column","connectfour_column6","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~1.25 ~3 {"Tags":["connectfour_column","connectfour_column7","connectfour_player2_column"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
