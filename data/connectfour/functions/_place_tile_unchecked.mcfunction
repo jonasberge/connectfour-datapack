@@ -16,11 +16,11 @@ execute at @e[tag=connectfour_column_origin,sort=nearest,limit=1] if entity @e[t
 
 # Check if the game is finished.
 # Player 1
-execute at @e[tag=connectfour_player1_column,tag=connectfour_column1] run function connectfour:count_connected
+execute at @e[tag=connectfour_player1_middle_column] run function connectfour:count_connected
 execute if entity @e[tag=connectfour_register1,scores={connectfour_gamestate=1..}] run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _player1_won
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player1_won] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _player1_won
 # Player 2
-execute unless entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player1_won] run execute at @e[tag=connectfour_player2_column,tag=connectfour_column1] run function connectfour:count_connected
+execute unless entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player1_won] run execute at @e[tag=connectfour_player2_middle_column] run function connectfour:count_connected
 execute unless entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player1_won] if entity @e[tag=connectfour_register1,scores={connectfour_gamestate=1..}] run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _player2_won
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player2_won] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _player2_won
 # Game is done
