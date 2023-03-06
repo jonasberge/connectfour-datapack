@@ -176,6 +176,7 @@ These are held for extended time periods
 * `_player2_turn` - Same as the previous, but for player 2.
 * `_player1_won` - Player 1 has won the game. The game is finished.
 * `_player2_won` - Same as the previous, but for player 2.
+* `_no_winner_tie` - There is no winner, the game is a tie.
 * `_mark_winning_blocks` -
 Used internally to denote that winning blocks (connected tiles)
 should be marked as such.
@@ -216,6 +217,8 @@ The move they made is not valid and it is still their turn
 * `_player2_columnfull` - Same as the previous, but for player 2.
 * `_player1_won` - Player 1 has won the game. The game is finished.
 * `_player2_won` - Same as the previous, but for player 2.
+* `_game_finished` - The game is finished.
+* `_no_winner_tie` - The game is finished.
 
 You can use these events to write messages, turn on lights,
 trigger other parts of your circuit, etc.
