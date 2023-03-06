@@ -109,6 +109,8 @@ and which functions are necessary at a minimum to play the game:
     that checks certain things during each tick while the game is running.
     It must be activated while a game is played.
     This is used to allow delayed operations after certain game events.
+    It is sufficient to enable it once per group of games,
+    but make sure it's running and not inside an unloaded chunk.
 
 6. **What to do next**.
 Each of the command blocks will operate on the nearest game board.
@@ -229,18 +231,31 @@ that belong to the player.
 The amount of connected tiles is stored for the entity
 `connectfour_register1` in the scoreboard `connectfour_gamestate`.
 This number may be written in chat or used otherwise.
-Most importantly though, if it is greater than 0, 
-* `connectfour:create_board_eastwest` - 
-* `connectfour:create_board_northsouth` - 
-* `connectfour:delete_nearest_board` - 
-* `connectfour:mainloop` - 
-* `connectfour:mark_winning_blocks` - 
-* `connectfour:place_tile` - 
-* `connectfour:readme` - 
-* `connectfour:reset_board` - 
-* `connectfour:restore_board` - 
-* `connectfour:setup` - 
-* `connectfour:start` - 
-* `connectfour:stop` - 
-* `connectfour:tag_nearest_player1` - 
-* `connectfour:teardown` - 
+Most importantly though, if it is greater than 0,
+than the player whose columns were selected has won the game.
+Use one the below commands to check
+if player 1 or player 2 has won respectively.
+```mcfunction
+execute at @e[tag=connectfour_player1_middle_column] run function connectfour:count_connected
+```
+```mcfunction
+execute at @e[tag=connectfour_player2_middle_column] run function connectfour:count_connected
+```
+* `connectfour:create_board_eastwest` - #TODO
+* `connectfour:create_board_northsouth` - #TODO
+* `connectfour:delete_nearest_board` - #TODO
+* `connectfour:mainloop` - #TODO
+* `connectfour:mark_winning_blocks` - #TODO
+* `connectfour:place_tile` - #TODO
+* `connectfour:readme` - #TODO
+* `connectfour:reset_board` - #TODO
+* `connectfour:restore_board` - #TODO
+* `connectfour:setup` - #TODO
+* `connectfour:start` - #TODO
+* `connectfour:stop` - #TODO
+* `connectfour:tag_nearest_player1` - #TODO
+* `connectfour:teardown` - #TODO
+
+# How it works
+
+#TODO
