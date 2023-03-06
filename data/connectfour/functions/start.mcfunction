@@ -26,4 +26,5 @@ scoreboard players set @e[tag=connectfour_register3,sort=nearest,limit=1] connec
 tag @e[tag=connectfour_state,sort=nearest,limit=1] add _player1_turn
 tag @e[tag=connectfour_event,sort=nearest,limit=1] add _player1_turn
 
+# Game is active
 tag @e[tag=connectfour_state,sort=nearest,limit=1] add _game_active

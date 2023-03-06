@@ -28,6 +28,13 @@ execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player1_won
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player2_won] run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _game_finished
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player1_won] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _game_finished
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_player2_won] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _game_finished
+
+# Check if no turn can be made.
+execute if score @e[tag=connectfour_column_origin,tag=connectfour_column1,sort=nearest,limit=1] connectfour_nextrow matches 128 if score @e[tag=connectfour_column_origin,tag=connectfour_column2,sort=nearest,limit=1] connectfour_nextrow matches 128 if score @e[tag=connectfour_column_origin,tag=connectfour_column3,sort=nearest,limit=1] connectfour_nextrow matches 128 if score @e[tag=connectfour_column_origin,tag=connectfour_column4,sort=nearest,limit=1] connectfour_nextrow matches 128 if score @e[tag=connectfour_column_origin,tag=connectfour_column5,sort=nearest,limit=1] connectfour_nextrow matches 128 if score @e[tag=connectfour_column_origin,tag=connectfour_column6,sort=nearest,limit=1] connectfour_nextrow matches 128 if score @e[tag=connectfour_column_origin,tag=connectfour_column7,sort=nearest,limit=1] connectfour_nextrow matches 128 run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _no_winner_tie
+execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_no_winner_tie] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _no_winner_tie
+execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_no_winner_tie] run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _game_finished
+execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_no_winner_tie] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _game_finished
+
 # It's nobody's turn if the game is done
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_game_finished] run tag @e[tag=connectfour_event,sort=nearest,limit=1] remove _player1_turn
 execute if entity @e[tag=connectfour_state,sort=nearest,limit=1,tag=_game_finished] run tag @e[tag=connectfour_event,sort=nearest,limit=1] remove _player2_turn

@@ -1,5 +1,7 @@
 # Deletes all armor stands of the nearest board.
 
+function connectfour:_reset_placers
+
 execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run kill @e[distance=..4,tag=connectfour_register,sort=nearest,limit=3]
 execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run kill @e[distance=..4,tag=connectfour_player,sort=nearest,limit=2]
 execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run kill @e[distance=..4,tag=connectfour_state,sort=nearest,limit=1]

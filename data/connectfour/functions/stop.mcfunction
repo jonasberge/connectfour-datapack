@@ -3,5 +3,3 @@
 
 function connectfour:_remove_tags
 function connectfour:_reset_placers
-
-tag @e[tag=connectfour_state,sort=nearest,limit=1] remove _game_active
