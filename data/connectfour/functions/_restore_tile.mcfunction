@@ -18,5 +18,5 @@ execute if entity @s[tag=connectfour_player2_column] run execute as @e[tag=conne
 execute as @e[tag=connectfour_register2,sort=nearest,limit=1] if entity @s[tag=!connectfour_success] run execute as @e[tag=connectfour_placer1,sort=nearest,limit=1] at @s unless block ~ ~ ~ iron_block run fill ~ ~ ~ ~ ~ ~ air replace
 
 # Reset
-tag @e[tag=connectfour_register2] remove connectfour_success
+tag @e[tag=connectfour_register2,sort=nearest,limit=1] remove connectfour_success
 scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0

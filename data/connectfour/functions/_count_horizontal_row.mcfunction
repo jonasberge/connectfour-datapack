@@ -13,20 +13,20 @@
 # "connectfour_register2" has a score of 1 if this is successful.
 
 # Divide by the selected digit
-scoreboard players operation @e[tag=connectfour_check,limit=4] connectfour_cache /= @e[tag=connectfour_register1] connectfour_cache
+scoreboard players operation @e[tag=connectfour_check,sort=nearest,limit=4] connectfour_cache /= @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache
 # Modulo 2
-scoreboard players set @e[tag=connectfour_register2] connectfour_cache 2
-scoreboard players operation @e[tag=connectfour_check,limit=4] connectfour_cache %= @e[tag=connectfour_register2] connectfour_cache
+scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 2
+scoreboard players operation @e[tag=connectfour_check,sort=nearest,limit=4] connectfour_cache %= @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache
 # If the sum of all results is 4, then all digits were set
-scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
-scoreboard players operation @e[tag=connectfour_register2] connectfour_cache += @e[tag=connectfour_check,limit=4] connectfour_cache
-execute if score @e[tag=connectfour_register2,limit=1] connectfour_cache matches 4 run tag @e[tag=connectfour_register2] add connectfour_success_vertical
+scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0
+scoreboard players operation @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache += @e[tag=connectfour_check,sort=nearest,limit=4] connectfour_cache
+execute if score @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache matches 4 run tag @e[tag=connectfour_register2,sort=nearest,limit=1] add connectfour_success_vertical
 
-execute if entity @e[tag=connectfour_register2,tag=connectfour_success_vertical] run scoreboard players add @e[tag=connectfour_register1] connectfour_gamestate 1
+execute if entity @e[tag=connectfour_register2,sort=nearest,limit=1,tag=connectfour_success_vertical] run scoreboard players add @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_gamestate 1
 
 # Return value
-scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
-execute if entity @e[tag=connectfour_register2,tag=connectfour_success_vertical] run scoreboard players set @e[tag=connectfour_register2] connectfour_cache 1
+scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0
+execute if entity @e[tag=connectfour_register2,sort=nearest,limit=1,tag=connectfour_success_vertical] run scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 1
 
 # Reset
-tag @e[tag=connectfour_register2] remove connectfour_success_vertical
+tag @e[tag=connectfour_register2,sort=nearest,limit=1] remove connectfour_success_vertical

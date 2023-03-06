@@ -13,9 +13,9 @@ execute as @e[tag=connectfour_placer2,sort=nearest,limit=1] at @s run tp @s ~ ~1
 execute as @e[tag=connectfour_placer3,sort=nearest,limit=1] at @s run tp @s ~ ~10 ~
 execute as @e[tag=connectfour_placer4,sort=nearest,limit=1] at @s run tp @s ~ ~10 ~
 
-tellraw @a [{"score":{"objective":"connectfour_cache","name":"@e[tag=connectfour_register3,sort=nearest,limit=1]"}}]
-scoreboard players operation @e[tag=connectfour_register2] connectfour_cache = @e[tag=connectfour_register3] connectfour_cache
-scoreboard players add @e[tag=connectfour_register2] connectfour_cache 1
+# tellraw @a [{"score":{"objective":"connectfour_cache","name":"@e[tag=connectfour_register3,sort=nearest,limit=1]"}}]
+scoreboard players operation @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache = @e[tag=connectfour_register3,sort=nearest,limit=1] connectfour_cache
+scoreboard players add @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 1
 tag @e[tag=connectfour_placer1,sort=nearest,limit=1] add connectfour_tp_up
 tag @e[tag=connectfour_placer2,sort=nearest,limit=1] add connectfour_tp_up
 tag @e[tag=connectfour_placer3,sort=nearest,limit=1] add connectfour_tp_up
@@ -35,4 +35,4 @@ tag @e[tag=connectfour_state,sort=nearest,limit=1] add _mark_winning_blocks
 
 # Reset
 function connectfour:_reset_placers
-scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
+scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0

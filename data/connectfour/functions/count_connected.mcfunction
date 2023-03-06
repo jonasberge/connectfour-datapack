@@ -34,14 +34,14 @@
 # There also must be an entity with the tag "connectfour_register2".
 
 # reset
-scoreboard players set @e[tag=connectfour_register1] connectfour_gamestate 0
-scoreboard players set @e[tag=connectfour_register1] connectfour_cache 0
-scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
+scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_gamestate 0
+scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache 0
+scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0
 
 # check all horizontal rows
 function connectfour:_count_horizontal
 function connectfour:_count_vertical
 
 # reset
-scoreboard players set @e[tag=connectfour_register1] connectfour_cache 0
-scoreboard players set @e[tag=connectfour_register2] connectfour_cache 0
+scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache 0
+scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0
