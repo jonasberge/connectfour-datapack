@@ -51,10 +51,3 @@ scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connec
 function connectfour:_count_horizontal_row
 execute as @e[tag=connectfour_register2,sort=nearest,limit=1] run execute if entity @s[scores={connectfour_cache=1}] run function connectfour:_set_markers_diagonal_tlbr
 scoreboard players set @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 0
-
-# Debug
-#execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,tag=_debug] run tellraw @a [{"score":{"name":"@e[tag=connectfour_check1,sort=nearest,limit=1]","objective":"connectfour_cache"}}]
-#execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,tag=_debug] run tellraw @a [{"score":{"name":"@e[tag=connectfour_check2,sort=nearest,limit=1]","objective":"connectfour_cache"}}]
-#execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,tag=_debug] run tellraw @a [{"score":{"name":"@e[tag=connectfour_check3,sort=nearest,limit=1]","objective":"connectfour_cache"}}]
-#execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,tag=_debug] run tellraw @a [{"score":{"name":"@e[tag=connectfour_check4,sort=nearest,limit=1]","objective":"connectfour_cache"}}]
-#execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,tag=_debug] run tellraw @a "-"

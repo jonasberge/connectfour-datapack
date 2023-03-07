@@ -7,37 +7,37 @@
 function connectfour:_determine_board_orientation
 
 # East
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
 execute as @e[tag=connectfour_winning_block,tag=_place_here] at @s run fill ~1 ~ ~ ~1 ~ ~ acacia_button[face=wall,facing=east] replace air
 tag @e[tag=connectfour_winning_block,tag=_place_here] add _remove_this
 tag @e[tag=connectfour_winning_block,tag=_place_here] remove _place_here
 
 # South
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
 execute as @e[tag=connectfour_winning_block,tag=_place_here] at @s run fill ~ ~ ~1 ~ ~ ~1 acacia_button[face=wall,facing=south] replace air
 tag @e[tag=connectfour_winning_block,tag=_place_here] add _remove_this
 tag @e[tag=connectfour_winning_block,tag=_place_here] remove _place_here
 
 # West
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=1}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
 execute as @e[tag=connectfour_winning_block,tag=_place_here] at @s run fill ~-1 ~ ~ ~-1 ~ ~ acacia_button[face=wall,facing=west] replace air
 tag @e[tag=connectfour_winning_block,tag=_place_here] add _remove_this
 tag @e[tag=connectfour_winning_block,tag=_place_here] remove _place_here
 
 # North
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=2}] as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 2 run execute as @e[tag=connectfour_winning_block] at @s run tag @s add _place_here
 execute as @e[tag=connectfour_winning_block,tag=_place_here] at @s run fill ~ ~ ~-1 ~ ~ ~-1 acacia_button[face=wall,facing=north] replace air
 tag @e[tag=connectfour_winning_block,tag=_place_here] add _remove_this
 tag @e[tag=connectfour_winning_block,tag=_place_here] remove _place_here

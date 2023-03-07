@@ -10,9 +10,9 @@ execute store result score @e[tag=connectfour_register3,sort=nearest,limit=1] co
 scoreboard players operation @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache -= @e[tag=connectfour_register3,sort=nearest,limit=1] connectfour_cache
 
 # Orientation east-west (1)
-execute if entity @e[tag=connectfour_register1,sort=nearest,limit=1,scores={connectfour_cache=0}] run scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache 1
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 0 run scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache 1
 # Orientation north-south (2)
-execute if entity @e[tag=connectfour_register2,sort=nearest,limit=1,scores={connectfour_cache=0}] run scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache 2
+execute if score @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache matches 0 run scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache 2
 
 # Reset
 scoreboard players reset @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache

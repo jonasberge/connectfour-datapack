@@ -16,17 +16,17 @@ execute as @e[tag=connectfour_placer4,sort=nearest,limit=1] at @s run tp @s ~ ~1
 # tellraw @a [{"score":{"objective":"connectfour_cache","name":"@e[tag=connectfour_register3,sort=nearest,limit=1]"}}]
 scoreboard players operation @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache = @e[tag=connectfour_register3,sort=nearest,limit=1] connectfour_cache
 scoreboard players add @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache 1
-tag @e[tag=connectfour_placer1,sort=nearest,limit=1] add connectfour_tp_up
-tag @e[tag=connectfour_placer2,sort=nearest,limit=1] add connectfour_tp_up
-tag @e[tag=connectfour_placer3,sort=nearest,limit=1] add connectfour_tp_up
-tag @e[tag=connectfour_placer4,sort=nearest,limit=1] add connectfour_tp_up
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run tag @e[tag=connectfour_placer1,sort=nearest,limit=1] add connectfour_tp_up
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run tag @e[tag=connectfour_placer2,sort=nearest,limit=1] add connectfour_tp_up
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run tag @e[tag=connectfour_placer3,sort=nearest,limit=1] add connectfour_tp_up
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run tag @e[tag=connectfour_placer4,sort=nearest,limit=1] add connectfour_tp_up
 function connectfour:_tp_up_by_register2
 
 # Summon markers
-execute as @e[tag=connectfour_placer1,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
-execute as @e[tag=connectfour_placer2,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
-execute as @e[tag=connectfour_placer3,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
-execute as @e[tag=connectfour_placer4,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run execute as @e[tag=connectfour_placer1,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run execute as @e[tag=connectfour_placer2,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run execute as @e[tag=connectfour_placer3,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
+execute at @e[tag=connectfour_placer_anchor,sort=nearest,limit=1] run execute positioned ~ ~15 ~ run execute as @e[tag=connectfour_placer4,sort=nearest,limit=1] at @s run summon marker ~ ~ ~ {Tags:["connectfour_winning_block"]}
 
 # Set state for the future:
 # Winning blocks are marked once all falling entities are gone.
