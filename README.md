@@ -1,10 +1,38 @@
 # Connect Four Minecraft Datapack
 
-TODOS:
-- Sicherstellen, dass zwei Versionen nebeneinander stehen können (sort=nearest,limit=1 ...)
-
 This is a datapack for playing the board game "Connect Four" in Minecraft.
-Read the documentation below on how to create a game board.
+Read the documentation below on how to create your first game board.
+
+## Features
+
+* Play Connect Four in Minecraft!
+* All winning connected blocks (4 in a row) are identified, not just one.
+The amount of these can be retrieved from a scoreboard value after the game.
+* Each winning line of connected blocks is visually highlighted
+once the game is over,
+so players can tell who won and why they won.
+* Proper logic to make sure
+each player can only make one move during their turn.
+* Includes necessary checks for full columns and tied games without a winner.
+* Blocks are falling down from the top of the board (like falling sand).
+* Game state is stored entirely in scoreboards and persistent entities,
+which enables easier (and possibly faster) calculations
+and lets the state be decoupled from the blocks in the world.
+Even if the game board is destroyed, the game state can be recovered.
+This also enables instant win checks,
+even while a block/tile is falling down.
+Game state cannot be manipulated by destroying blocks
+and blocks on the board are restored before each move,
+in case some were removed.
+* Entirely implemented with functions,
+so there is no need for a dozen command blocks bloating the area.
+* Each event in the game can be detected with command blocks,
+so that you can build a circuit that reacts to state changes!
+Write custom messages to players,
+change the arena based on who's turn it is and more.
+* You can have multiple game boards in the same world,
+in parallel, being played at the same time!
+Just make sure to follow the instructions below.
 
 # How to use this datapack
 
@@ -12,7 +40,8 @@ Read the documentation below on how to create a game board.
 
 * In-game you only need to execute functions
 that are not prefixed with an underscore to interact with the datapack.
-Functions with an underscore in front are private.
+Functions with an underscore in front are considered private
+and are not meant to be used from anywhere outside the datapack.
 * It is possible to have multiple instances of the game in the same world.
 To make sure that each function call knows on which instance it should operate,
 prepend each function call with this command.
@@ -20,10 +49,19 @@ This is an absolute necessity,
 otherwise it is not guaranteed that the datapack works properly
 with multiple instances of this game in the same world.
 ```mcfunction
-execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run
+execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run ...
 ```
 
-## Step-by-step guide
+## Installation
+
+To install this datapack,
+either download a ZIP file of this repository
+or choose on of the release from the sidebar.
+Unzip it into the datapacks folder of your world
+and enter the `/reload` or `/minecraft:reload` command
+in your world or on your server.
+
+## Usage guide
 
 1. **Enabling the game on the current server**.
 To be able to play the game,
@@ -38,19 +76,7 @@ function connectfour:setup
 function connectfour:teardown
 ```
 
-2. **Activating the main loop**.
-For the game to work properly,
-also create a powered repeating command block
-with the following command in it.
-The main loop is used to check certain things during each tick
-while the game is running.
-It must be activated while a game is played,
-but it can be disabled while no game is running.
-```mcfunction
-execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run function connectfour:mainloop
-```
-
-3. **Tagging players of the game**.
+2. **Tagging players of the game**.
 Players of the game should be tagged with the tags
 `connectfour_player1` and `connectfour_player2`.
 Do this before the game starts.
@@ -59,7 +85,7 @@ but it might help if you want to incorporate messages to the players
 when certain game events occur
 (see below for reference on what game events are).
 
-4. **Creating a board**.
+3. **Creating a board**.
 Helper functions exist to create a minimal instance of the game.
 Paste either of the following commands into a command block (important!)
 and power it with a button or a redstone block.
@@ -77,7 +103,7 @@ function connectfour:create_board_northsouth
 function connectfour:create_board_eastwest
 ```
 
-5. **Understanding what has been created**.
+4. **Understanding what has been created**.
 After having executed one of the two previous commands
 you will see a square game board, several command blocks
 and a few armor stands in a glass box below the board.  
@@ -107,12 +133,11 @@ and which functions are necessary at a minimum to play the game:
     * *The main loop*.
     The repeating command block executes a function
     that checks certain things during each tick while the game is running.
-    It must be activated while a game is played.
+    It must be activated while a game is played on this board
     This is used to allow delayed operations after certain game events.
-    It is sufficient to enable it once per group of games,
-    but make sure it's running and not inside an unloaded chunk.
+    Each game board needs its own main loop.
 
-6. **What to do next**.
+5. **What to do next**.
 Each of the command blocks will operate on the nearest game board.
 So make sure they are closest to the created board
 and not closer to another board in the world.
@@ -257,8 +282,53 @@ execute at @e[tag=connectfour_player2_middle_column] run function connectfour:co
 * `connectfour:start` - #TODO
 * `connectfour:stop` - #TODO
 * `connectfour:tag_nearest_player1` - #TODO
+* `connectfour:tag_nearest_player2` - #TODO
 * `connectfour:teardown` - #TODO
 
 # How it works
 
-#TODO
+Columns are encoded as binary numbers,
+where each cell in a row is represented by a binary digit (1, 2, 4, etc.).
+If player 1 has placed a block in column 1,
+then player 2 in the same column and then player 1 again,
+the value for that column for player 1 would be 5 (1 + 4)
+and for player 2 it would be 2 (2),
+since the first row is represented by 1,
+the second by 2 and the third by 4.
+
+This allows for a very compact and purely numeric representation
+of the game state within a single scoreboard and with just a few entities.
+
+Also, checking for connected tiles (4 in a row)
+becomes quite simple (in theory),
+since you only need to check these properties,
+depending on the orientation you want to check:
+* Vertically connected tiles -
+Here a column's value must contain 4 consecutive binary digits,
+e.g. 1, 2, 4 and 8 or 4, 8, 16 and 32.
+Only if that is the case, there is are four connected tiles.
+It is easy to check this using bit shifts (aka. divide by 2)
+and comparing against the number 15 (containing the first four binary digits).
+Bit shifts allow use to move tiles in a column up and down.
+* Horizontally connected tiles -
+Here we check if four neighbouring column values
+all share a common binary digit (e.g. 4 or 64).
+If they do, that means each of the columns have a tile in the same row,
+which means there are four connected tiles in that row.
+* Diagonally connected tiles -
+We can reuse the algorithm for horizontally connected tiles,
+by rearranging the four columns in the following manner:
+Leave the left-most column as is.
+Move the next column to the right of it 1 down.
+Move the next column (the third one) 2 down.
+Move the fourth and last column 3 down.
+Imagine this visually and you will notice
+that we have transformed a diagonal line to a horizontal line.
+We can now simply check if these tiles are horizontally connected.
+
+In order to mark which tiles are part of a connected series of tiles
+(these blocks are highlighted at the end of each game, if there is a winner),
+we can track back how many bit shifts we did and in which column we are,
+to determine the exact position at which such a block is at.
+
+That's it!
