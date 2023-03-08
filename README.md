@@ -270,7 +270,9 @@ execute at @e[tag=connectfour_player1_middle_column] run function connectfour:co
 execute at @e[tag=connectfour_player2_middle_column] run function connectfour:count_connected
 ```
 * `connectfour:create_board_eastwest` - #TODO
+* `connectfour:create_board_eastwest_entitiesonly` - #TODO
 * `connectfour:create_board_northsouth` - #TODO
+* `connectfour:create_board_northsouth_entitiesonly` - #TODO
 * `connectfour:delete_nearest_board` - #TODO
 * `connectfour:mainloop` - #TODO
 * `connectfour:mark_winning_blocks` - #TODO
