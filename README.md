@@ -220,7 +220,7 @@ The `connectfour_event` entity is used
 to communicate these events to your circuit.
 You can read them with the following command in a repeating command block:
 ```mcfunction
-tag @e[tag=connectfour_event] remove _event_name
+tag @e[tag=connectfour_event,sort=nearest,limit=1] remove _event_name
 ```
 The command block may then be followed by
 any number of conditional (!) chained command blocks
