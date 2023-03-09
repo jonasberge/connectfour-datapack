@@ -38,8 +38,8 @@ execute as @e[type=player,tag=connectfour_check_is_player,tag=_next_player,sort=
 # If neither is a success (both equal 1),
 # the player is not a player of the game.
 execute as @e[type=player,tag=connectfour_check_is_player,tag=_next_player,sort=arbitrary,limit=1] run execute at @s run execute at @e[tag=connectfour_board_origin,sort=nearest,limit=1] run execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 1 if score @e[tag=connectfour_register2,sort=nearest,limit=1] connectfour_cache matches 1 run tag @e[type=player,tag=connectfour_check_is_player,tag=_next_player,sort=arbitrary,limit=1] add connectfour_not_a_player
+tag @e[type=player,tag=connectfour_check_is_player,tag=_next_player,sort=arbitrary,limit=1] remove _next_player
 tag @e[type=player,tag=connectfour_not_a_player,sort=arbitrary,limit=1] remove connectfour_check_is_player
-tag @e[type=player,tag=connectfour_not_a_player,sort=arbitrary,limit=1] remove _next_player
 tag @e[type=player,tag=connectfour_not_a_player,sort=arbitrary,limit=1] remove connectfour_not_a_player
 
 # Recursion until no player is left
