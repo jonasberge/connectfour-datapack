@@ -9,6 +9,9 @@ fill ~3 ~-13 ~ ~-3 ~-15 ~ glass
 # = -4-10-2+0.5 = -15.5
 summon armor_stand ~ ~-15.5 ~ {Tags:["connectfour_board_origin","connectfour_board_origin_live"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 
+# Sign to store player names.
+execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run setblock ~ ~ ~-1 oak_wall_sign[facing=north]
+
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_register","connectfour_register1"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_register","connectfour_register2"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}
 execute at @e[tag=connectfour_board_origin_live,sort=nearest,limit=1] run summon minecraft:armor_stand ~ ~ ~ {"Tags":["connectfour_register","connectfour_register3"],NoGravity:1b,Invulnerable:1b,NoBasePlate:1b,Small:1b,PersistenceRequired:1b}

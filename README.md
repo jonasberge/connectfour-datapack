@@ -113,6 +113,15 @@ and must not be moved, destroyed or otherwise modified.
 I have used visible armor stands, so it is easy to delete the board,
 in case that is necessary at some point.
 Check the reference below to find out what each entity is used for.  
+**A sign**.
+The sign in front of the armor stands is important!
+It will store the names of player 1 and player 2
+which can be used to check if a player with the tag
+`connectfour_player1` or `connectfour_player2`
+is actually the player of the nearest game.
+This can be useful for making sure only the actual players
+are in the arena and pressing buttons.
+Use the function `connectfour:check_is_player` explained below for this.  
 **Command blocks**.
 Some command blocks have been placed with pre-made commands
 that explain how to interact with the game
@@ -250,6 +259,14 @@ trigger other parts of your circuit, etc.
 
 ## Function Reference
 
+* `connectfour:check_is_player` -
+Checks if any of the players with the tag `connectfour_check_is_player`
+is a player of the game that is nearest to them respectively.
+If they are not, the tag `connectfour_check_is_player` is removed.
+You can then determine who is not a player
+by checking if they do not have a tag anymore.
+For this to work, the names of the players should have been stored first
+with the functions `store_player1_name` and `store_player2_name`.
 * `connectfour:count_connected` -
 Counts the number of connected game tiles (4 in a row)
 horizontally, diagonally and vertically
@@ -283,6 +300,8 @@ execute at @e[tag=connectfour_player2_middle_column] run function connectfour:co
 * `connectfour:setup` - #TODO
 * `connectfour:start` - #TODO
 * `connectfour:stop` - #TODO
+* `connectfour:store_player1_name` - #TODO
+* `connectfour:store_player2_name` - #TODO
 * `connectfour:tag_nearest_player1` - #TODO
 * `connectfour:tag_nearest_player2` - #TODO
 * `connectfour:teardown` - #TODO

@@ -4,6 +4,7 @@
 # Just in case
 function connectfour:_remove_tags
 function connectfour:_reset_placers
+function connectfour:_clear_sign
 
 # Reset the board
 function connectfour:reset_board

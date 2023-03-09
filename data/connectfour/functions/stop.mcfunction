@@ -3,3 +3,4 @@
 
 function connectfour:_remove_tags
 function connectfour:_reset_placers
+function connectfour:_clear_sign
