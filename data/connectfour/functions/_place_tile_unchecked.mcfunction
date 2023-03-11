@@ -34,7 +34,7 @@ execute as @e[tag=connectfour_state,sort=nearest,limit=1] run execute if entity 
 # Player 2
 execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 0 run scoreboard players set @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_gamestate 0
 execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 0 run execute at @e[tag=connectfour_player2_middle_column,sort=nearest,limit=1] run function connectfour:count_connected
-execute unless score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_gamestate matches 0 run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _player2_won
+execute if score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_cache matches 0 run execute unless score @e[tag=connectfour_register1,sort=nearest,limit=1] connectfour_gamestate matches 0 run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _player2_won
 execute as @e[tag=connectfour_state,sort=nearest,limit=1] run execute if entity @s[tag=_player2_won] run tag @e[tag=connectfour_event,sort=nearest,limit=1] add _player2_won
 # Game is done
 execute as @e[tag=connectfour_state,sort=nearest,limit=1] run execute if entity @s[tag=_player1_won] run tag @e[tag=connectfour_state,sort=nearest,limit=1] add _game_finished
