@@ -3,6 +3,8 @@
 This is a datapack for playing the board game "Connect Four" in Minecraft.
 Read the documentation below on how to create your first game board.
 
+![connectfour-ingame](https://github.com/jonasberge/connectfour-datapack/assets/24623262/f3a7e7a6-650e-49cb-95d1-882a6d9e8575)
+
 ## Features
 
 * Play Connect Four in Minecraft!
